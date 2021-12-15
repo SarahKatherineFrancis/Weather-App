@@ -4,7 +4,7 @@ body {
 }
 .container {
   width: 700px;
-  padding: 50px 80px;
+  padding: 50px 80px 30px;
   background-image: url("https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=767&q=80");
   background-repeat: no-repeat;
   background-size: cover;
@@ -101,4 +101,13 @@ h4 {
   width: 100%;
   padding: 10px;
   background: rgb(153, 140, 235, 0.3);
+}
+.github-link {
+  display: block;
+  margin: 20px auto 0;
+  text-align: right;
+  opacity: 0.8;
+}
+.github-link:hover {
+  opacity: 1;
 }
