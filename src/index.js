@@ -24,31 +24,16 @@ function search(event) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${searchInput.value}`;
 }
-function convertToFarenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature-value");
-  let temperature = temperatureElement.innerHTML;
-  temperatureElement.innerHTML = 64;
-}
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature-value");
-  temperatureElement.innerHTML = 18;
-}
-let temperature = document.querySelector("#temperature-value");
-let farenheitLink = document.querySelector("#farenheit-temperature");
-farenheitLink.addEventListener("click", convertToFarenheit);
 
-let celsiusLink = document.querySelector("#celsius-temperature");
-celsiusLink.addEventListener("click", convertToCelsius);
+let temperature = document.querySelector("#temperature-value");
+
 let searchInput = document.querySelector("#search-city-input");
 
 function displayWeatherCondition(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
-  document.querySelector("#temperature-value").innerHTML = Math.round(
-    response.data.main.temp
-  );
-
+  celsiusTemperature = response.data.main.temp;
+  document.querySelector("#temperature-value").innerHTML =
+    Math.round(celsiusTemperature);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
@@ -61,6 +46,13 @@ function displayWeatherCondition(response) {
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute("alt", response.data.weather[0].description);
+}
+
+function displayFarenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature-value");
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(farenheitTemperature);
 }
 
 function searchCity(city) {
@@ -91,3 +83,8 @@ searchCity("Cape Town");
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let farenheitLink = document.querySelector("#farenheit-temperature");
+farenheitLink.addEventListener("click", displayFarenheitTemperature);
+
+let celsiusTemperature = null;
