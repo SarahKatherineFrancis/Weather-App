@@ -23,19 +23,17 @@
   <body>
     <div class="container">
       <form id="form">
-      <div class="search" id=search-city
-      >
-        <input
+       <div class="search" id=search-city>
+         <input
           class="searchCity"
           type="search"
           placeholder="Search city..."
           id="city-input"
-          autocomplete="off"
-        />
-        <input class="search-button" id= "search-city-button" type="submit" value= "Search" />
-        <button class="current-location-button" id="current-location-button"> Current location </button>
+          autocomplete="off" />
+         <input class="search-button" id= "search-city-button" type="submit" value= "Search" />
+         <button class="current-location-button" id="current-location-button"> Current location </button>
+       </div>
       </form>
-      </div>
       <h1 id="city-name"></h1>
       <h6>Sunday 10:13</h6>
       <div class="row">
@@ -49,126 +47,13 @@
         </div>
         <div class="col-4 additional">
           <ul>
-            <li> Humidity: <span id="humidity"></li>
+            <li>Humidity: <span id="humidity"> % </li>
             <li>Wind: <span id="wind"></span> km/h</li>
           </ul>
         </div>
-        <div class="row hourly-weather">
-          <div class="col">
-            <div class="weather-hours">Now</div>
-            <img
-              class="weather-icon"
-              src="images/sunny.png"
-              alt="sun"
-              width="50px"
-            />
-            <span class="weather-hours-temperature">18°C</span>
-          </div>
-          <div class="col">
-            <div class="weather-hours">13:00</div>
-            <img
-              class="weather-icon"
-              src="images/cloudy.png"
-              alt="cloud"
-              width="50px"
-            />
-            <span class="weather-hours-temperature">20°C</span>
-          </div>
-          <div class="col">
-            <div class="weather-hours">16:00</div>
-            <img
-              class="weather-icon"
-              src="images/cloudy.png"
-              alt="cloud"
-              width="50px"
-            />
-            <span class="weather-hours-temperature">18°C</span>
-          </div>
-          <div class="col">
-            <div class="weather-hours">19:00</div>
-            <img
-              class="weather-icon"
-              src="images/cloudy.png"
-              alt="cloud"
-              width="50px"
-            />
-            <span class="weather-hours-temperature">16°C</span>
-          </div>
-          <div class="col">
-            <div class="weather-hours">22:00</div>
-            <img
-              class="weather-icon"
-              src="images/rain.png"
-              alt="rainy"
-              width="50px"
-            />
-            <span class="weather-hours-temperature">15°C</span>
-          </div>
-        </div>
-        <h4>5-Day Forecast</h4>
-        <div class="row forecast">
-          <div class="col">
-            <div class="weather-hours">Today</div>
-            <img
-              class="weather-icon"
-              src="images/cloudy.png"
-              alt="cloud"
-              width="50px"
-            />
-            <span class="weather-hours-temperature"
-              ><strong>20°C</strong> | 12°C</span
-            >
-          </div>
-          <div class="col">
-            <div class="weather-hours">Mon</div>
-            <img
-              class="weather-icon"
-              src="images/rain.png"
-              alt="rain"
-              width="50px"
-            />
-            <span class="weather-hours-temperature"
-              ><strong>19°C</strong> | 14°C</span
-            >
-          </div>
-          <div class="col">
-            <div class="weather-hours">Tues</div>
-            <img
-              class="weather-icon"
-              src="images/windy.png"
-              alt="wind"
-              width="50px"
-            />
-            <span class="weather-hours-temperature"
-              ><strong>16°C</strong> | 7°C</span
-            >
-          </div>
-          <div class="col">
-            <div class="weather-hours">Wed</div>
-            <img
-              class="weather-icon"
-              src="images/sunny.png"
-              alt="sun"
-              width="50px"
-            />
-            <span class="weather-hours-temperature"
-              ><strong>11°C</strong> | 3°C</span
-            >
-          </div>
-          <div class="col">
-            <div class="weather-hours">Thur</div>
-            <img
-              class="weather-icon"
-              src="images/sunny.png"
-              alt="sun"
-              width="50px"
-            />
-            <span class="weather-hours-temperature"
-              ><strong>13°C</strong> | 2°C</span
-            >
-          </div>
-        </div>
-      </div>
+        <div id= "hourly-forecast" class="hourly-weather"></div>
+      <h4>5-Day Forecast</h4>
+      <div class="forecast" id="daily-forecast"></div>
       <a class="github-link" href="https://github.com/SarahKatherineFrancis/Weather-App"> <img src="images/github.png" width="40px"></a>
     </div>
     <script src="src/index.js"></script>

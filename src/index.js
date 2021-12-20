@@ -18,6 +18,53 @@ let day = days[now.getDay()];
 h6.innerHTML = `${day} ${hours}:${minutes}`;
 let form = document.querySelector("#form");
 form.addEventListener("submit", search);
+
+function displayHourlyForecast() {
+  let forecastElement = document.querySelector("#hourly-forecast");
+  let hours = ["9:00", "13:00", "16:00", "19:00", "22:00"];
+  let forecastHTML = `<div class="row">`;
+  hours.forEach(function (hour) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+            <div class="weather-hours">${hour}</div>
+            <img
+              class="weather-icon"
+              src="images/sunny.png"
+              alt="sun"
+              width="50px"
+            />
+            <span class="weather-hours-temperature">18°C</span>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+function displayForecast() {
+  let forecastElement = document.querySelector("#daily-forecast");
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  let forecastHTML = `<div class= "row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col">
+            <div class="weather-hours">${day}</div>
+            <img
+              class="weather-icon"
+              src="images/cloudy.png"
+              alt="cloud"
+              width="42px"
+            />
+            <span class="weather-hours-temperature"
+              ><strong>20°C</strong> | 12°C</span
+            >
+        </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function search(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
@@ -90,6 +137,10 @@ function searchLocation(position) {
 }
 
 searchCity("Cape Town");
+
+displayHourlyForecast();
+
+displayForecast();
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
