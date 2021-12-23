@@ -17,46 +17,11 @@ let days = [
 let day = days[now.getDay()];
 h6.innerHTML = `${day} ${hours}:${minutes}`;
 
-function formatTime(timestamp) {
-  let time = new Date(timestamp * 1000);
-  let hours = time.getHours();
-  let minutes = time.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  return `${day} ${hours}:${minutes}`;
-}
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
-}
-
-function displayHourlyForecast(response) {
-  let forecast = response.data.hourly;
-  let forecastElement = document.querySelector("#hourly-forecast");
-  let hours = ["9:00", "13:00", "16:00", "19:00", "22:00"];
-  let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastHour, index) {
-    if ((index, 5)) {
-      forecastHTML =
-        forecastHTML +
-        `<div class="col">
-            <div class="weather-hours">${hour}</div>
-            <img
-              class="weather-icon"
-              src="images/sunny.png"
-              alt="sun"
-              width="50px"
-            />
-            <span class="weather-hours-temperature">18°C</span>
-          </div>`;
-    }
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
 }
 
 function displayForecast(response) {
