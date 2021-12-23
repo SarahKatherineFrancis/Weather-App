@@ -17,6 +17,16 @@ let days = [
 let day = days[now.getDay()];
 h6.innerHTML = `${day} ${hours}:${minutes}`;
 
+function formatTime(timestamp) {
+  let time = new Date(timestamp * 1000);
+  let hours = time.getHours();
+  let minutes = time.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day} ${hours}:${minutes}`;
+}
+
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -25,14 +35,15 @@ function formatDay(timestamp) {
 }
 
 function displayHourlyForecast(response) {
-  console.log(response.data.hourly);
+  let forecast = response.data.hourly;
   let forecastElement = document.querySelector("#hourly-forecast");
   let hours = ["9:00", "13:00", "16:00", "19:00", "22:00"];
   let forecastHTML = `<div class="row">`;
-  hours.forEach(function (hour) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
+  forecast.forEach(function (forecastHour, index) {
+    if ((index, 5)) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
             <div class="weather-hours">${hour}</div>
             <img
               class="weather-icon"
@@ -42,6 +53,7 @@ function displayHourlyForecast(response) {
             />
             <span class="weather-hours-temperature">18°C</span>
           </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -103,7 +115,7 @@ function getForecast(coordinates) {
 
 function displayWeatherCondition(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
-  celsiusTemperature = response.data.main.temp;
+  let celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature-value").innerHTML =
     Math.round(celsiusTemperature);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -174,35 +186,10 @@ function searchLocation(position) {
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
-function displayFarenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature-value");
-  celsiusLink.classList.remove("active");
-  farenheitLink.classList.add("active");
-  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(farenheitTemperature);
-}
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature-value");
-  celsiusLink.classList.add("active");
-  farenheitLink.classList.remove("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
 searchCity("Cape Town");
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-let farenheitLink = document.querySelector("#farenheit-temperature");
-farenheitLink.addEventListener("click", displayFarenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-temperature");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let celsiusTemperature = null;
