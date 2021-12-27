@@ -67,12 +67,6 @@ let temperature = document.querySelector("#temperature-value");
 
 let searchInput = document.querySelector("#search-city-input");
 
-function getHourlyForecast(coordinates) {
-  let apiKey = "8e7ae886bfd9f66febdffcb5fb779942";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayHourlyForecast);
-}
-
 function getForecast(coordinates) {
   let apiKey = "8e7ae886bfd9f66febdffcb5fb779942";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
@@ -100,7 +94,6 @@ function displayTemperature(response) {
   );
 
   getForecast(response.data.coord);
-  getHourlyForecast(response.data.coord);
 }
 
 function search(city) {
@@ -127,7 +120,7 @@ function getCurrentLocation(event) {
 function searchLocation(position) {
   let apiKey = "8e7ae886bfd9f66febdffcb5fb779942";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherCondition);
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 search("Cape Town");
